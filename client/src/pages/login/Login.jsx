@@ -14,7 +14,6 @@ const Login = () => {
       { email: email.current.value, password: password.current.value },
       dispatch
     );
-    console.log(user);
   };
   return (
     <div>
