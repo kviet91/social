@@ -1,7 +1,8 @@
 import "./register.css";
 import { useRef } from "react";
 import axios from "axios";
-import {useHistory} from "react-router";
+import { useHistory } from "react-router";
+import { Link } from "@material-ui/core";
 
 const Register = () => {
   const username = useRef();
@@ -19,9 +20,9 @@ const Register = () => {
         email: email.current.value,
         password: password.current.value,
         passwordAgain: passwordAgain.current.value,
-      }
+      };
       try {
-        await axios.post("/auth/register",user);
+        await axios.post("/auth/register", user);
         history.push("/login");
       } catch (error) {
         console.log(error);
@@ -65,7 +66,10 @@ const Register = () => {
             <button className="loginButton" type="submit">
               Sign Up
             </button>
-            <button className="loginRegisterButton">Log into Account</button>
+
+            <button className="loginRegisterButton">
+              <Link href="/login">Log into Account</Link>
+            </button>
           </form>
         </div>
       </div>
