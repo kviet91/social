@@ -1,4 +1,4 @@
-import { Link } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import { Add, Remove } from "@material-ui/icons";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
@@ -47,12 +47,12 @@ const Rightbar = ({ user }) => {
     return (
       <>
         <div className="birthdayContainer">
-          <img className="birthdayImg" src="assets/gift.png" alt="" />
+          <img className="birthdayImg" src={PF + "gift.png"} alt="" />
           <span className="birthdayText">
             <b>Pola Foster</b> and <b>3 other friends</b> have a birhday today.
           </span>
         </div>
-        <img className="rightbarAd" src="assets/ad.png" alt="" />
+        <img className="rightbarAd" src={PF +"ad.png"} alt="" />
         <h4 className="rightbarTitle">Online Friends</h4>
         <ul className="rightbarFriendList">
           {friends.map((friend) => (
@@ -97,7 +97,7 @@ const Rightbar = ({ user }) => {
         <h4 className="rightbarTitle">User friends</h4>
         <div className="rightbarFollowings">
           {friends.map((friend) => (
-            <Link to={"/profile" + friend.username}>
+            <Link to={`/profile/${friend.username}`}>
               <div className="rightbarFollowing">
                 <img
                   src={
