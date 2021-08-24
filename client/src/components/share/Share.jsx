@@ -34,7 +34,7 @@ export default function Share() {
     }
     try {
       await axios.post("/posts", newPost);
-      // window.location.reload();
+      window.location.reload();
     } catch (err) { }
   };
 
