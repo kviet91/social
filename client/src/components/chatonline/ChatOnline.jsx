@@ -1,8 +1,9 @@
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./chatonline.css"
 
-const ChatOnline = ({ onlineUsers, currentId }) => {
+const ChatOnline = ({ onlineUsers, currentId, setCurrentChat }) => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const [friends, setFriends] = useState([]);
     const [onlineFriends, setOnlineFriends] = useState([]);
@@ -19,10 +20,23 @@ const ChatOnline = ({ onlineUsers, currentId }) => {
         setOnlineFriends(friends.filter((f) => onlineUsers.includes(f._id)));
     }, [friends, onlineUsers]);
 
+    console.log(friends, onlineUsers);
+
+    const handleClick = async (user) => {
+        try {
+            const res = await axios.get(
+                `/conversations/find/${currentId}/${user._id}`
+            );
+            setCurrentChat(res.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <div className="chatOnline">
             {onlineFriends.map((o) => (
-                <div className="chatOnlineFriend">
+                <div className="chatOnlineFriend" onClick={() => handleClick(o)}>
                     <div className="chatOnlineImgContainer">
                         <img
                             className="chatOnlineImg"
