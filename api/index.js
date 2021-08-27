@@ -7,6 +7,8 @@ const morgan = require("morgan");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
+const conversationRouter = require("./routes/conversation")
+const messageRouter = require("./routes/message")
 const multer = require('multer');
 const path = require('path');
 
@@ -28,6 +30,8 @@ app.use("/images", express.static(path.join(__dirname, "/public/images")));
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
+app.use("/api/conversations", conversationRouter);
+app.use("/api/messages", messageRouter);
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
